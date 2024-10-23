@@ -1,0 +1,15 @@
+import numpy as np
+import pandas as pd
+def onehot_en(data,column):
+   unique_categories = data[column].unique()
+   for category in unique_categories:
+        data[f'{column}_{category}'] = np.where(data[column] == category, 1, 0)
+   
+   data.drop(column, axis=1, inplace=True)
+   return data
+data = pd.DataFrame({
+        'Color': ['Red', 'Green', 'Blue', 'Green', 'Red', 'Blue', 'Red'],
+        'item':['item1','item2','item3','item4','item5','item6','item7']
+    })
+z=onehot_en(data,'Color')
+print(z)
