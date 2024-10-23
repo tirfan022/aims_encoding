@@ -1,0 +1,13 @@
+import numpy as np
+import pandas as pd
+
+def ordinal_en(data, column, order):
+    y = list(enumerate(order))
+    order_dict = {value: index for index, value in y}
+    data["rating"] = data[column].map(order_dict)
+    return data
+data = pd.DataFrame({"item": ["item1", "item2", "item3", "item4"],
+                     "quality": ["good", "better", "best", "good"]})
+order = ["good", "better", "best"]
+encoded_data = ordinal_en(data, "quality", order)
+print(encoded_data)    
